@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 function TaskPage() {
   const navigate = useNavigate();
   function returnToApp() {
-    navigate(`/`);
+    navigate(-1); //tanto o '-1' quanto o '/' funcionam igual neste caso
   }
   const [searchParams] = useSearchParams();
   const title = searchParams.get("title");
