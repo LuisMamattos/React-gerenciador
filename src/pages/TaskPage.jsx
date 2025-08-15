@@ -1,5 +1,6 @@
 import { ChevronLeftIcon } from "lucide-react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function TaskPage() {
   const navigate = useNavigate();
@@ -7,9 +8,19 @@ function TaskPage() {
     navigate(-1); //tanto o '-1' quanto o '/' funcionam igual neste caso
   }
   const [searchParams] = useSearchParams();
-  const title = searchParams.get("title");
-  const description = searchParams.get("description");
-  const pageTitle = `Detalhes da Tarefa: ${title}`;
+  const id = searchParams.get("id");
+  const taskAtual = JSON.parse(
+    localStorage.getItem("tasks_salvas") || "[]"
+  ).find((item) => {
+    return item.id == id;
+  });
+  console.log(taskAtual);
+  /////////////////////////////////////////////////////////////////////////////////////////
+  //   const setTasks = useState(
+  //     JSON.parse(localStorage.getItem("tasks_salvas")) || []
+  //   );
+  //////////////////////////////////////////////////////////////////////////////////////////
+  const pageTitle = `Detalhes da Tarefa: ${taskAtual.title}`;
   return (
     <div className="h-screen w-screen bg-slate-500 p-6 flex justify-center">
       <div className="w-screen space-y-4">
@@ -27,8 +38,10 @@ function TaskPage() {
         </div>
 
         <div className="bg-slate-400 p-4 rounded-lg">
-          <h2 className="text-xl font-bold text-slate-600">{title}</h2>
-          <p className="text-slate-600">{description}</p>
+          <h2 className="text-xl font-bold text-slate-600">
+            {taskAtual.title}
+          </h2>
+          <p className="text-slate-600">{taskAtual.description}</p>
         </div>
       </div>
     </div>
