@@ -15,11 +15,7 @@ function TaskPage() {
     return item.id == id;
   });
   console.log(taskAtual);
-  /////////////////////////////////////////////////////////////////////////////////////////
-  //   const setTasks = useState(
-  //     JSON.parse(localStorage.getItem("tasks_salvas")) || []
-  //   );
-  //////////////////////////////////////////////////////////////////////////////////////////
+
   const pageTitle = `Detalhes da Tarefa: ${taskAtual.title}`;
   return (
     <div className="h-screen w-screen bg-slate-500 p-6 flex justify-center">

@@ -20,6 +20,7 @@ function Tasks(props) {
             }`}
           >
             {task.isCompleted && <CheckIcon />}
+            {/*Substitui o if*/}
             {task.title}
           </button>
           <button

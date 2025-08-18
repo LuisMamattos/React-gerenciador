@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import Tasks from "./components/Tasks";
+import { useNavigate } from "react-router-dom";
 import AddTask from "./components/AddTask";
 
 function App() {
+  const navigate = useNavigate();
   const [tasks, setTasks] = useState(
     JSON.parse(localStorage.getItem("tasks_salvas")) || []
   );
@@ -36,6 +38,9 @@ function App() {
     };
     setTasks([...tasks, newTask]);
   }
+  function TesteClick() {
+    navigate(`/teste`);
+  }
 
   return (
     <div className="w-screen h-screen bg-slate-500 flex justify-center p-6">
@@ -43,6 +48,14 @@ function App() {
         <h1 className="text-3xl text-slate-100 font-bold text-center">
           Gerenciador de Tarefas
         </h1>
+        <div>
+          <button
+            onClick={TesteClick}
+            className="bg-slate-400   text-white p-2 rounded-md"
+          >
+            Ir para pagina teste
+          </button>
+        </div>
         <AddTask onAddTaskSubmit={onAddTaskSubmit} />
         <Tasks
           tasks={tasks}
